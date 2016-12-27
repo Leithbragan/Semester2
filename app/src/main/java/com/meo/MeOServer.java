@@ -3,9 +3,6 @@ package com.meo;
 import java.util.ArrayDeque;
 import java.util.List;
 
-/**
- * Created by Ilya Evlampiev on 13.12.2015.
- */
 public class MeOServer {
 
     static ArrayDeque<MeOSession> globalDeviceList=new ArrayDeque<MeOSession>(){};

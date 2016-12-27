@@ -259,10 +259,10 @@ public class TicTacToeClient {
                     notDestroyedLocation(response, opponentBoard, 23, false);
 
                 } else if (response.startsWith("THROW_INTO_THE_VOID")) {
-                    throwIntoTheVoid(response, 20, true);
+                    throwIntoTheVoid(response, board, 20, icon, true);
 
                 } else if (response.startsWith("OPPONENT_THROW_INTO_THE_VOID")) {
-                    throwIntoTheVoid(response, 29, false);
+                    throwIntoTheVoid(response, opponentBoard, 29, opponentIcon, false);
 
 
                 } else if (response.startsWith("VICTORY")) {
@@ -438,13 +438,25 @@ public class TicTacToeClient {
 
     }
 
-    private void throwIntoTheVoid(String response, int n, boolean current) {
+    private void throwIntoTheVoid(String response, Square[] board, int n, ImageIcon icon, boolean current) {
         String turn = response.substring(n);
+        if (response.startsWith("THROW_INTO_THE_VOID_") || response.startsWith("OPPONENT_THROW_INTO_THE_VOID_")) {
+            int location = direction(turn, current); //определяем координату по направлению
+            if (icon.equals(this.icon)) {
+                board[location].setIcon(destroyed);
+            }
+            else {
+                board[location].setIcon(destroyed);
+            }
+            board[location].repaint();
+        }
+        else {
 
-        if (current)
-            messageLabel.setText("Throw into the void " + turn);
-        else
-            messageLabel.setText("Opponent throw into the void " + turn);
+            if (current)
+                messageLabel.setText("Throw into the void " + turn);
+            else
+                messageLabel.setText("Opponent throw into the void " + turn);
+        }
     }
 
     private boolean wantsToPlayAgain() {

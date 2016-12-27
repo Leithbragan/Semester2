@@ -1,10 +1,10 @@
 package edu.lmu.cs.networking;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+        import java.io.BufferedReader;
+        import java.io.IOException;
+        import java.io.InputStreamReader;
+        import java.io.PrintWriter;
+        import java.net.Socket;
 
 /**
  * A two-player game.
@@ -214,7 +214,13 @@ public class Game {
                     output.println("NOT_DESTROYED " + turn);
 
                     message = "OPPONENT_NOT_DESTROYED " + turn;
+
+                } else if (board[location].equals(ruin)) { //если осколки
+                    output.println("THROW_INTO_THE_VOID_" + turn);
+
+                    message = "OPPONENT_THROW_INTO_THE_VOID_" + turn;
                 }
+
             } catch (NullPointerException e) { //если попали в пустоту
                 if (player == currentPlayer) {
                     output.println("THROW_INTO_THE_VOID " + turn);
